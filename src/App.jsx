@@ -141,36 +141,36 @@ function JoinScreen({ onJoin }) {
     }
   };
 
-  const ib = { padding: "14px 18px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.08)", color: "#f5e6c8", fontSize: 15, outline: "none", fontFamily: FNT, textAlign: "center", width: "100%", boxSizing: "border-box" };
-  const bp = { padding: "14px", borderRadius: 10, border: "none", width: "100%", background: "linear-gradient(135deg,#c9a96e,#b8943f)", color: "#3e3428", fontWeight: 700, fontSize: 15, cursor: "pointer", fontFamily: FNT };
-  const bs = { ...bp, background: "transparent", border: "1px solid rgba(245,230,200,0.3)", color: "#f5e6c8" };
+  const ib = { padding: "14px 18px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.25)", background: "rgba(255,255,255,0.12)", color: "#fff", fontSize: 15, outline: "none", fontFamily: FNT, textAlign: "center", width: "100%", boxSizing: "border-box" };
+  const bp = { padding: "14px", borderRadius: 10, border: "none", width: "100%", background: "linear-gradient(135deg,#d4b06a,#c9a043)", color: "#2a2218", fontWeight: 700, fontSize: 15, cursor: "pointer", fontFamily: FNT };
+  const bs = { ...bp, background: "transparent", border: "1.5px solid rgba(245,230,200,0.5)", color: "#fff" };
   const bd = { ...bp, opacity: 0.4, cursor: "not-allowed" };
 
   return (
-    <div style={{ width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(160deg,#3e3428 0%,#5d4e37 40%,#7a6a54 100%)", fontFamily: FNT }}>
+    <div style={{ width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(160deg,#1a1510 0%,#2e2720 40%,#3e3428 100%)", fontFamily: FNT }}>
       <link href="https://fonts.googleapis.com/css2?family=Klee+One&family=Zen+Kurenaido&display=swap" rel="stylesheet" />
-      <div style={{ background: "rgba(255,255,255,0.06)", backdropFilter: "blur(20px)", borderRadius: 20, padding: "48px 44px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 24px 64px rgba(0,0,0,0.4)", maxWidth: 440, width: "90%" }}>
+      <div style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(20px)", borderRadius: 20, padding: "48px 44px", border: "1px solid rgba(255,255,255,0.18)", boxShadow: "0 24px 64px rgba(0,0,0,0.6)", maxWidth: 440, width: "90%" }}>
         <div style={{ textAlign: "center", marginBottom: 28 }}>
           <div style={{ fontSize: 40, marginBottom: 8 }}>📌</div>
-          <h1 style={{ color: "#f5e6c8", fontSize: 26, fontWeight: 700, margin: 0 }}>付箋ボード</h1>
-          <p style={{ color: "rgba(245,230,200,0.5)", fontSize: 13, marginTop: 6 }}>みんなで使えるリアルタイム共有付箋ボード</p>
+          <h1 style={{ color: "#fff", fontSize: 26, fontWeight: 700, margin: 0 }}>付箋ボード</h1>
+          <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, marginTop: 6 }}>みんなで使えるリアルタイム共有付箋ボード</p>
         </div>
 
         <div style={{ marginBottom: 20 }}>
-          <label style={{ color: "rgba(245,230,200,0.6)", fontSize: 12, marginBottom: 6, display: "block" }}>❶ あなたの表示名</label>
+          <label style={{ color: "rgba(255,255,255,0.85)", fontSize: 12, marginBottom: 6, display: "block", fontWeight: 600 }}>❶ あなたの表示名</label>
           <input type="text" value={name} onChange={(e) => { setName(e.target.value); setError(""); }} placeholder="例：Air" maxLength={12} style={ib} disabled={loading} />
         </div>
 
         <div style={{ marginBottom: 12 }}>
-          <label style={{ color: "rgba(245,230,200,0.6)", fontSize: 12, marginBottom: 6, display: "block" }}>❷ ボードを選ぶ</label>
+          <label style={{ color: "rgba(255,255,255,0.85)", fontSize: 12, marginBottom: 6, display: "block", fontWeight: 600 }}>❷ ボードを選ぶ</label>
           {!showJoin ? (
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <button onClick={doCreate} disabled={loading || !ok} style={ok && !loading ? bp : bd}>{loading ? "作成中..." : "✨ 新しいボードを作成する"}</button>
-              <div style={{ textAlign: "center", color: "rgba(245,230,200,0.3)", fontSize: 12 }}>または</div>
+              <div style={{ textAlign: "center", color: "rgba(255,255,255,0.5)", fontSize: 12 }}>または</div>
               <button onClick={() => { if (ok) { setShowJoin(true); setError(""); } else setError("先に名前を入力してください"); }} style={ok ? bs : { ...bs, opacity: 0.4, cursor: "not-allowed" }}>🔗 ルームIDで既存ボードに参加</button>
-              <div style={{ marginTop: 8, padding: "12px 14px", borderRadius: 10, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                <p style={{ color: "rgba(245,230,200,0.45)", fontSize: 11, margin: 0, lineHeight: 1.8 }}>
-                  <strong style={{ color: "rgba(245,230,200,0.65)" }}>📖 使い方：</strong><br />
+              <div style={{ marginTop: 8, padding: "12px 14px", borderRadius: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 11, margin: 0, lineHeight: 1.8 }}>
+                  <strong style={{ color: "rgba(255,255,255,0.9)" }}>📖 使い方：</strong><br />
                   ① 1人目が「新しいボードを作成する」をクリック<br />
                   ② 画面上部のルームID（6文字）をコピー<br />
                   ③ 仲間にIDを共有<br />
@@ -180,10 +180,10 @@ function JoinScreen({ onJoin }) {
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <p style={{ color: "rgba(245,230,200,0.55)", fontSize: 13, margin: 0, textAlign: "center" }}>仲間から共有されたルームIDを入力</p>
+              <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 13, margin: 0, textAlign: "center" }}>仲間から共有されたルームIDを入力</p>
               <input type="text" value={roomId} onChange={(e) => { setRoomId(e.target.value.toUpperCase()); setError(""); }} onKeyDown={(e) => e.key === "Enter" && !e.nativeEvent.isComposing && doJoin()} placeholder="例：K7MX3P" maxLength={6} autoFocus style={{ ...ib, fontSize: 24, fontFamily: "monospace", letterSpacing: "0.3em" }} disabled={loading} />
               <button onClick={doJoin} disabled={loading || roomId.trim().length < 4} style={roomId.trim().length >= 4 && !loading ? bp : bd}>{loading ? "接続中..." : "このルームに参加する"}</button>
-              <button onClick={() => { setShowJoin(false); setRoomId(""); setError(""); }} style={{ padding: 8, background: "none", border: "none", color: "rgba(245,230,200,0.4)", cursor: "pointer", fontSize: 13, fontFamily: FNT }}>← 戻る</button>
+              <button onClick={() => { setShowJoin(false); setRoomId(""); setError(""); }} style={{ padding: 8, background: "none", border: "none", color: "rgba(255,255,255,0.6)", cursor: "pointer", fontSize: 13, fontFamily: FNT }}>← 戻る</button>
             </div>
           )}
         </div>

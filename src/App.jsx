@@ -181,7 +181,7 @@ function JoinScreen({ onJoin }) {
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <p style={{ color: "rgba(245,230,200,0.55)", fontSize: 13, margin: 0, textAlign: "center" }}>仲間から共有されたルームIDを入力</p>
-              <input type="text" value={roomId} onChange={(e) => { setRoomId(e.target.value.toUpperCase()); setError(""); }} onKeyDown={(e) => e.key === "Enter" && doJoin()} placeholder="例：K7MX3P" maxLength={6} autoFocus style={{ ...ib, fontSize: 24, fontFamily: "monospace", letterSpacing: "0.3em" }} disabled={loading} />
+              <input type="text" value={roomId} onChange={(e) => { setRoomId(e.target.value.toUpperCase()); setError(""); }} onKeyDown={(e) => e.key === "Enter" && !e.nativeEvent.isComposing && doJoin()} placeholder="例：K7MX3P" maxLength={6} autoFocus style={{ ...ib, fontSize: 24, fontFamily: "monospace", letterSpacing: "0.3em" }} disabled={loading} />
               <button onClick={doJoin} disabled={loading || roomId.trim().length < 4} style={roomId.trim().length >= 4 && !loading ? bp : bd}>{loading ? "接続中..." : "このルームに参加する"}</button>
               <button onClick={() => { setShowJoin(false); setRoomId(""); setError(""); }} style={{ padding: 8, background: "none", border: "none", color: "rgba(245,230,200,0.4)", cursor: "pointer", fontSize: 13, fontFamily: FNT }}>← 戻る</button>
             </div>
@@ -894,7 +894,7 @@ function BoardScreen({ userName, roomId, onLeave }) {
         <div style={{ width: 1, height: 20, background: "rgba(245,230,200,0.15)" }} />
 
         <div style={{ display: "flex", alignItems: "center", gap: 4, flex: 1, minWidth: 140 }}>
-          <input type="text" value={newText} onChange={(e) => setNewText(e.target.value)} onKeyDown={(e) => e.key === "Enter" && addNote()} placeholder="付箋テキスト..." style={{ flex: 1, padding: "5px 9px", borderRadius: 6, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.1)", color: "#f5e6c8", fontSize: 12, outline: "none", fontFamily: "inherit", minWidth: 60 }} />
+          <input type="text" value={newText} onChange={(e) => setNewText(e.target.value)} onKeyDown={(e) => e.key === "Enter" && !e.nativeEvent.isComposing && addNote()} placeholder="付箋テキスト..." style={{ flex: 1, padding: "5px 9px", borderRadius: 6, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.1)", color: "#f5e6c8", fontSize: 12, outline: "none", fontFamily: "inherit", minWidth: 60 }} />
           <div style={{ display: "flex", gap: 2 }}>
             {COLORS.map((c) => (
               <button key={c.name} onClick={() => setSelectedColor(c.name)} style={{ width: 16, height: 16, borderRadius: "50%", background: c.bg, border: selectedColor === c.name ? "2px solid #f5e6c8" : "1.5px solid rgba(255,255,255,0.2)", cursor: "pointer", padding: 0 }} />

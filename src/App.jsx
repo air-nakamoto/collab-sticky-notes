@@ -905,7 +905,24 @@ function BoardScreen({ userName, roomId, onLeave }) {
 
         <div style={{ width: 1, height: 20, background: "rgba(245,230,200,0.15)" }} />
 
-        <button onClick={() => setShowShapePanel(!showShapePanel)} style={{ ...tbBtn, border: showShapePanel ? "1px solid rgba(201,169,110,0.6)" : tbBtn.border, background: showShapePanel ? "rgba(201,169,110,0.15)" : tbBtn.background }}>🔷 図形</button>
+        <div style={{ position: "relative" }}>
+          <button onClick={() => setShowShapePanel(!showShapePanel)} style={{ ...tbBtn, border: showShapePanel ? "1px solid rgba(201,169,110,0.6)" : tbBtn.border, background: showShapePanel ? "rgba(201,169,110,0.15)" : tbBtn.background }}>🔷 図形</button>
+          {showShapePanel && (
+            <div style={{ position: "absolute", top: 0, left: "100%", marginLeft: 6, background: "rgba(62,52,40,0.97)", borderRadius: 10, boxShadow: "0 4px 24px rgba(0,0,0,0.4)", padding: "10px 12px", zIndex: 30000, display: "flex", flexDirection: "column", gap: 6, minWidth: 130, border: "1px solid rgba(245,230,200,0.15)" }}>
+              <span style={{ color: "rgba(245,230,200,0.7)", fontSize: 10, fontWeight: 600 }}>図形を追加</span>
+              {SHAPE_TYPES.map((st) => (
+                <button key={st.type} onClick={() => addShape(st.type)} style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid rgba(245,230,200,0.2)", background: "rgba(255,255,255,0.06)", color: "#f5e6c8", fontSize: 12, cursor: "pointer", fontFamily: "inherit", textAlign: "left" }}>{st.label}</button>
+              ))}
+              <div style={{ height: 1, background: "rgba(245,230,200,0.15)" }} />
+              <span style={{ color: "rgba(245,230,200,0.7)", fontSize: 10, fontWeight: 600 }}>色</span>
+              <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+                {SHAPE_COLORS.map((c) => (
+                  <button key={c} onClick={() => setShapeColor(c)} style={{ width: 20, height: 20, borderRadius: "50%", background: c, border: shapeColor === c ? "2px solid #f5e6c8" : "1.5px solid rgba(255,255,255,0.2)", cursor: "pointer", padding: 0 }} />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
 
         <div style={{ position: "relative" }}>
           <button onClick={() => setShowExport(!showExport)} style={tbBtn}>💾 保存</button>
@@ -922,20 +939,7 @@ function BoardScreen({ userName, roomId, onLeave }) {
         <button onClick={onLeave} style={{ background: "none", border: "1px solid rgba(231,76,60,0.3)", borderRadius: 6, color: "rgba(231,76,60,0.7)", fontSize: 10, padding: "3px 7px", cursor: "pointer", fontFamily: "inherit" }}>退室</button>
       </div>
 
-      {/* Shape Panel */}
-      {showShapePanel && (
-        <div style={{ flexShrink: 0, background: "rgba(62,52,40,0.95)", padding: "8px 14px", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", borderBottom: "1px solid rgba(245,230,200,0.1)", zIndex: 9999 }}>
-          <span style={{ color: "rgba(245,230,200,0.5)", fontSize: 11 }}>図形を追加：</span>
-          {SHAPE_TYPES.map((st) => (
-            <button key={st.type} onClick={() => addShape(st.type)} style={{ padding: "5px 12px", borderRadius: 6, border: "1px solid rgba(245,230,200,0.2)", background: "rgba(255,255,255,0.06)", color: "#f5e6c8", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>{st.label}</button>
-          ))}
-          <div style={{ width: 1, height: 20, background: "rgba(245,230,200,0.15)" }} />
-          <span style={{ color: "rgba(245,230,200,0.5)", fontSize: 11 }}>色：</span>
-          {SHAPE_COLORS.map((c) => (
-            <button key={c} onClick={() => setShapeColor(c)} style={{ width: 18, height: 18, borderRadius: "50%", background: c, border: shapeColor === c ? "2px solid #f5e6c8" : "1.5px solid rgba(255,255,255,0.2)", cursor: "pointer", padding: 0 }} />
-          ))}
-        </div>
-      )}
+
 
       {/* Help */}
       {showHelp && (
